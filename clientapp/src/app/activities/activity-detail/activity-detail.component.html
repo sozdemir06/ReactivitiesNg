@@ -1,0 +1,65 @@
+<section>
+  <div class="container" *ngIf="(activity$ | async ) as activity">
+    <div class="row">
+      <div class="col-md-8">
+        <div class="card mb-3">
+          <img src=" ../../../assets/Images/categoryImages/culture.jpg" alt="" />
+          <div class="card-body clearfix">
+             <h3>{{activity.title}}</h3>
+             <p>{{activity.description}}</p>
+             <p><strong>{{activity.category}}</strong></p>
+          </div>
+          <div class="card-footer clearfix">
+            <div class="float-left">
+              <button class="btn btn-success mr-2">Join</button>
+              <button class="btn btn-secondary">Cancel Joining</button>
+            </div>
+            <div class="float-right">
+               <button class="btn btn-warning" [routerLink]="['/activities/edit',activity.id]">Menage</button> 
+            </div>
+          </div>
+        </div>
+        <ul class="list-group mb-3">
+          <li class="list-group-item">{{activity.description}}</li>
+          <li class="list-group-item">{{activity.date}}-at 10:20 PM</li>
+          <li class="list-group-item">{{activity.venue}}-{{activity.city}}</li>
+        </ul>
+        <div class="card">
+          <div class="card-header text-center text-white bg-primary">
+            Chat about this event
+          </div>
+          <div class="card-body">
+            <div class="media">
+              <img src="../../../assets/Images/user.png" class="align-self-start mr-3" alt="..." style="max-width: 50px;"/>
+              <div class="media-body">
+                <h5 class="mt-0">Top-aligned media</h5>
+                <p>
+                  Cras sit amet nibh libero, in gravida nulla. Nulla vel metus
+                  scelerisque ante sollicitudin. Cras purus odio, vestibulum in
+                  
+                </p> 
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-4">
+        <div class="card">
+          <div class="card-header">Attandee</div>
+          <div class="card-body">
+            <ul class="list-group list-group-flush">
+                <li class="media">
+                    <img src="../../../assets/Images/user.png" class="mr-3" alt="..." style="max-width: 50px;">
+                    <div class="media-body">
+                      <h5 class="mt-0 mb-1">Jayne</h5>
+                      Attandee
+                    </div>
+                  </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+

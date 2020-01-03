@@ -1,0 +1,8 @@
+
+<ul>
+    <li *ngFor="let value of values$ | async">
+        <span>{{value.name}}</span>
+    </li>
+</ul>
+
+<a [routerLink]="['/']">Home</a>

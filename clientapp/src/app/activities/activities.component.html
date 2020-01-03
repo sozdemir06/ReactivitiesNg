@@ -1,0 +1,52 @@
+<div class="container">
+  <div class="row">
+    <div class="col-md-12">
+      <app-error
+        *ngIf="error$ | async"
+        [appErrors]="error$ | async"
+      ></app-error>
+    </div>
+  </div>
+</div>
+
+<section *ngIf="activities$ | async">
+  <div class="container">
+    <div class="row" >
+      <div class="col-md-8">
+        <app-activity-list
+          [activities]="activities$ | async"
+        ></app-activity-list>
+      </div>
+      <div class="col-md-4">
+        <div class="card mb-3">
+          <a class="card-header">
+            <i class="fas fa-filter">Filters</i>
+          </a>
+          <div class="car-body">
+            <ul class="list-group list-group-flush">
+              <li class="list-group-item">All Activities</li>
+              <li class="list-group-item">I'm Going</li>
+              <li class="list-group-item">I'am Hosting</li>
+            </ul>
+          </div>
+        </div>
+        <div class="card">
+          <a class="card-header">
+            <i class="fas fa-calendar-alt">
+              Select Date
+            </i>
+          </a>
+          <div class="card-body">
+            <ngb-datepicker
+              #dp
+              (ngModelChange)="getDate($event)"
+              [(ngModel)]="model"
+            ></ngb-datepicker>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+
