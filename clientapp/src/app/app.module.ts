@@ -13,9 +13,8 @@ import { CoreModule } from './core/core.module';
 import { EffectsModule } from '@ngrx/effects';
 import { AppEffects } from './app.effects';
 import { SharedModule } from './shared/shared.module';
-
-
-
+import { AuthComponent } from './auth/auth.component';
+import { AuthModule } from './auth/auth.module';
 
 
 
@@ -23,14 +22,18 @@ import { SharedModule } from './shared/shared.module';
    declarations: [
       AppComponent,
       HomeComponent,
+      AuthComponent,
+
 
    ],
    imports: [
       BrowserModule,
       AppRoutingModule,
+
       HttpClientModule,
       CoreModule,
       SharedModule,
+      AuthModule.forRoot(),
       StoreModule.forRoot(reducers, {
          metaReducers,
          runtimeChecks: {
@@ -39,7 +42,8 @@ import { SharedModule } from './shared/shared.module';
          }
       }),
       StoreDevtoolsModule.instrument({ maxAge: 25, logOnly: environment.production }),
-      EffectsModule.forRoot([AppEffects])
+      EffectsModule.forRoot([AppEffects]),
+      
 
 
    ],

@@ -26,14 +26,14 @@
          <button class="btn btn-success" [routerLink]="['/activities/create']" >Create Activity</button>
       </div>
       <ul class="navbar-nav ml-auto" style="cursor: pointer;">
-        <li class="nav-item">
+        <li *ngIf="isLoggedIn$ | async" class="nav-item">
           <img
             src="../../../assets/Images/user.png"
             alt=""
             class="img-thumbnail user-avatar"
           />
         </li>
-        <li ngbDropdown class="nav-item">
+        <li *ngIf="isLoggedIn$ | async" ngbDropdown class="nav-item">
           <a ngbDropdownToggle class="nav-link dropdown-toogle">
             Şükrü Özdemir
           </a>
@@ -42,6 +42,10 @@
             <button ngbDropdownItem>Another Action</button>
             <button ngbDropdownItem>Something else is here</button>
           </div>
+        </li>
+        <li *ngIf="isLoggedOut$ | async" class="nav-item">
+          <a class="btn btn-primary btn-sm" [routerLink]="['/auth/login']">Login</a>
+          <a class="btn btn-success btn-sm"  [routerLink]="['/auth/register']">Register</a>
         </li>
       </ul>
     </div>

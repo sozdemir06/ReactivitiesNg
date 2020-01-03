@@ -1,4 +1,8 @@
 import { Component, OnInit } from '@angular/core';
+import { Observable } from 'rxjs';
+import { Store, select } from '@ngrx/store';
+import { AppState } from 'src/app/reducers';
+import * as AuthSelectors from "../../auth/store/auth-selectors";
 
 @Component({
   selector: 'app-header',
@@ -7,10 +11,19 @@ import { Component, OnInit } from '@angular/core';
 })
 export class HeaderComponent implements OnInit {
   isMenuCollapsed:boolean=false; 
-  
-  constructor() { }
+  isLoggedIn$:Observable<boolean>;
+  isLoggedOut$:Observable<boolean>;
+
+  constructor(
+    private store:Store<AppState>
+  ) { }
 
   ngOnInit() {
+
+    this.isLoggedIn$=this.store.pipe(select(AuthSelectors.isLoggedIn));
+    this.isLoggedOut$=this.store.pipe(select(AuthSelectors.isLoggedOut));
+
+    
   }
 
 }

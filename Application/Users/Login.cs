@@ -62,6 +62,7 @@ namespace Application.Users
                     //Generate Token
                     return new User
                     {
+                        Id=user.Id,
                         DisplayName = user.DisplayName,
                         UserName = user.UserName,
                         Token =token,

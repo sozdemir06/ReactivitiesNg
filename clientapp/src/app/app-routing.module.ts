@@ -14,6 +14,11 @@ const routes: Routes = [
     loadChildren:()=>import("./activities/activity.module").then(m=>m.ActivityModule)
   },
 
+  {
+    path:"auth",
+    loadChildren:()=>import("./auth/auth.module").then(m=>m.AuthModule)
+  },
+
   {path:"**",redirectTo:"",pathMatch:"full"}
 ];
 

@@ -5,6 +5,7 @@ import { FooterComponent } from './footer/footer.component';
 import { NgbCollapseModule, NgbDropdownModule, NgbDateAdapter, NgbDateNativeAdapter, NgbDateNativeUTCAdapter } from '@ng-bootstrap/ng-bootstrap';
 import { RouterModule } from '@angular/router';
 import { ErrorInterceptorProvide } from './error-interceptor';
+import { CommonModule } from '@angular/common';
 
 
 
@@ -14,6 +15,7 @@ import { ErrorInterceptorProvide } from './error-interceptor';
         FooterComponent
     ],
     imports: [
+        CommonModule,
         NgbCollapseModule,
         NgbDropdownModule,
         RouterModule

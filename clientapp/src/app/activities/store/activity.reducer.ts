@@ -24,6 +24,7 @@ export const initialActivityState = adapter.getInitialState({
     loading: false,
     error: null,
     allActivityLoaded:false
+
 })
 
 export const activityReducer = createReducer(
