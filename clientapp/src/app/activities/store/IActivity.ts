@@ -6,7 +6,15 @@ export interface IACtivity{
     date:Date;
     city:string;
     venue:string;
+    attandees:IAttendees[]
     
 }
 
+
+export interface IAttendees{
+    userName:string;
+    displayName:string;
+    image:string;
+    isHost:boolean;
+}
 

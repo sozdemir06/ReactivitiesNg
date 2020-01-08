@@ -1,5 +1,4 @@
 import { IUser } from '../models/IUser'
-import { EntityState, createEntityAdapter } from '@ngrx/entity';
 import { createReducer, on } from '@ngrx/store';
 import { AuthActions } from './auth-actions.types';
 
@@ -9,7 +8,8 @@ import { AuthActions } from './auth-actions.types';
 export interface AuthState {
     loading: boolean;
     error: any;
-    user: IUser
+    user: IUser,
+    decodedToken:any;
 }
 
 
@@ -18,7 +18,8 @@ export interface AuthState {
 export const authInitialState: AuthState = {
     loading: false,
     error: undefined,
-    user: undefined
+    user: undefined,
+    decodedToken:null
 };
 
 export const authReducer = createReducer(
@@ -49,6 +50,21 @@ export const authReducer = createReducer(
            user:null
         }
     }),
+
+    on(AuthActions.decodeToken,(state,action)=>{
+        return {
+            ...state,
+            decodedToken:action.decodedToken
+        }
+    }),
+
+    on(AuthActions.logout,(state,action)=>{
+        return{
+            ...state,
+            decodedToken:null,
+            user:null,
+        }
+    })
 
 )
 

@@ -3,7 +3,7 @@
     <div class="row">
       <div class="col-md-8">
         <div class="card mb-3">
-          <img src=" ../../../assets/Images/categoryImages/culture.jpg" alt="" />
+        <img src='../../../assets/Images/categoryImages/{{activity.category}}.jpg' alt="" />
           <div class="card-body clearfix">
              <h3>{{activity.title}}</h3>
              <p>{{activity.description}}</p>
@@ -11,11 +11,14 @@
           </div>
           <div class="card-footer clearfix">
             <div class="float-left">
-              <button class="btn btn-success mr-2">Join</button>
-              <button class="btn btn-secondary">Cancel Joining</button>
+              <button  *ngIf="isGoing$ | async; else join" class="btn btn-secondary">Cancel Joining</button>
+              <ng-template #join>
+                <button  class="btn btn-success">Join</button>
+              </ng-template>
+              
             </div>
             <div class="float-right">
-               <button class="btn btn-warning" [routerLink]="['/activities/edit',activity.id]">Menage</button> 
+               <button *ngIf="isHost$ | async" class="btn btn-warning" [routerLink]="['/activities/edit',activity.id]">Menage</button> 
             </div>
           </div>
         </div>
@@ -48,11 +51,11 @@
           <div class="card-header">Attandee</div>
           <div class="card-body">
             <ul class="list-group list-group-flush">
-                <li class="media">
-                    <img src="../../../assets/Images/user.png" class="mr-3" alt="..." style="max-width: 50px;">
+                <li  *ngFor="let attendee of activity.attandees" class="media" >
+                    <img src='../../../assets/Images/{{attendee.image}}.jpg || ../../../../assets/Images/user.png'  class="mr-3" alt="..." style="max-width: 50px;">
                     <div class="media-body">
-                      <h5 class="mt-0 mb-1">Jayne</h5>
-                      Attandee
+                    <h5 class="mt-0 mb-1">{{attendee.displayName}}</h5>
+                      <span class="text-orange">Following</span>
                     </div>
                   </li>
             </ul>

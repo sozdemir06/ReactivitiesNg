@@ -2,6 +2,7 @@ using System.Text;
 using API.ErrorHandlingMiddleware;
 using Application.Activities;
 using Application.Interfaces;
+using AutoMapper;
 using Domain;
 using FluentValidation.AspNetCore;
 using Infrastructure.Security;
@@ -46,10 +47,12 @@ namespace API
                     policy.AllowAnyHeader().AllowAnyMethod().WithOrigins("http://localhost:4200");
                 });
             });
+
             services.AddMediatR(typeof(List.Handler).Assembly);
+            services.AddAutoMapper(typeof(List.Handler));
             services.AddControllers(opt=>{
-                    // var policy=new AuthorizationPolicyBuilder().RequireAuthenticatedUser().Build();
-                    // opt.Filters.Add(new AuthorizeFilter(policy));
+                    var policy=new AuthorizationPolicyBuilder().RequireAuthenticatedUser().Build();
+                    opt.Filters.Add(new AuthorizeFilter(policy));
             })
                     .AddFluentValidation(cfg =>
                     {
@@ -62,7 +65,13 @@ namespace API
             var identityBuilder = new IdentityBuilder(builder.UserType, builder.Services);
             identityBuilder.AddEntityFrameworkStores<DataContext>();
             identityBuilder.AddSignInManager<SignInManager<AppUser>>();
-
+            //Add IsHostRequrement custom Authorization Policy
+            services.AddAuthorization(opt=>{
+                opt.AddPolicy("IsActivityHost",policy=>{
+                    policy.Requirements.Add(new IsHostRequirement());
+                });
+            });
+            services.AddTransient<IAuthorizationHandler,IsHostAuthorizationHandler>();
 
             services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
                     .AddJwtBearer(opt=>{

@@ -32,7 +32,6 @@ export class ActivitiesComponent implements OnInit {
     this.activities$=this.store.pipe(select(selectAllActivit));
     this.loading$=this.store.pipe(select(selectActivityLoading));
     this.error$=this.store.pipe(select(selectActivityError));
-    this.activity$=this.store.pipe(select(getActiivtyById("b8f0ebc8-872e-4386-8712-046d67f26220")))
   }
 
 

@@ -24,5 +24,7 @@ apiUrl:string=environment.apiUrl;
     updateActivity(id:string | number,model:any):Observable<IACtivity>{
         return this.httpClient.put<IACtivity>(this.apiUrl+"activities/"+id,model.changes);
     }
+
+    getActivityById
     
 }

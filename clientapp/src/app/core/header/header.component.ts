@@ -3,6 +3,7 @@ import { Observable } from 'rxjs';
 import { Store, select } from '@ngrx/store';
 import { AppState } from 'src/app/reducers';
 import * as AuthSelectors from "../../auth/store/auth-selectors";
+import { AuthActions } from 'src/app/auth/store/auth-actions.types';
 
 @Component({
   selector: 'app-header',
@@ -24,6 +25,10 @@ export class HeaderComponent implements OnInit {
     this.isLoggedOut$=this.store.pipe(select(AuthSelectors.isLoggedOut));
 
     
+  }
+
+  logOut(){
+    this.store.dispatch(AuthActions.logout());
   }
 
 }

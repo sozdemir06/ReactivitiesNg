@@ -30,7 +30,7 @@ export const error = createSelector(
     state => state.error
 )
 
-export const selectCurretUser = createSelector(
+export const selectCurrentUser = createSelector(
     selectAuthState,
     state => state.user
 )

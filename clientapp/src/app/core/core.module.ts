@@ -6,6 +6,7 @@ import { NgbCollapseModule, NgbDropdownModule, NgbDateAdapter, NgbDateNativeAdap
 import { RouterModule } from '@angular/router';
 import { ErrorInterceptorProvide } from './error-interceptor';
 import { CommonModule } from '@angular/common';
+import { AuthInterceptors } from './auth-interceptors';
 
 
 
@@ -30,7 +31,8 @@ import { CommonModule } from '@angular/common';
     ],
     providers: [
         { provide: NgbDateAdapter, useClass: NgbDateNativeUTCAdapter },
-        ErrorInterceptorProvide
+        ErrorInterceptorProvide,
+        AuthInterceptors
     ]
 })
 export class CoreModule { }

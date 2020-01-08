@@ -10,10 +10,13 @@ import { environment } from 'src/environments/environment';
 export class AuthService {
 apiUrl=environment.apiUrl;
 
+
     constructor(private httpClient: HttpClient) { }
 
     login(model:any):Observable<IUser>{
         return this.httpClient.post<IUser>(this.apiUrl+"user/login",model);
     }
+
+
     
 }

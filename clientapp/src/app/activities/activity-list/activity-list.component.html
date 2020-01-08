@@ -17,8 +17,11 @@
       </span>
       <hr>
       <div class="bg-light">
-        <img src="../../../assets/Images/user.png" class="img-thumbnail " alt="" style="max-width: 50px;">
-        <img src="../../../assets/Images/user.png" class="img-thumbnail" alt="" style="max-width: 50px;">
+        <ul class="list-group list-group-horizontal">
+          <li *ngFor="let attendee of activity.attandees" class="list-group-item">
+          <img [src]="attendee.image || '../../../../../assets/Images/user.png'" class="img-thumbnail " alt="{{attendee.displayName}}" style="max-width: 50px;">
+          </li>
+        </ul>
       </div>
       <div class="d-flex justify-content-between mt-3">
         <small class="text-muted">{{activity.description}}</small>

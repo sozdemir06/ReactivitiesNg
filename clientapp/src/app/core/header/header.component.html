@@ -38,9 +38,9 @@
             Şükrü Özdemir
           </a>
           <div ngbDropdownMenu>
-            <button ngbDropdownItem>Action - 1</button>
+            <button ngbDropdownItem>Settings</button>
             <button ngbDropdownItem>Another Action</button>
-            <button ngbDropdownItem>Something else is here</button>
+            <button ngbDropdownItem (click)="logOut()">LogOut</button>
           </div>
         </li>
         <li *ngIf="isLoggedOut$ | async" class="nav-item">

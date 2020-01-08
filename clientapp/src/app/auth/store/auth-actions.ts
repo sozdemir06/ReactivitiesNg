@@ -18,3 +18,12 @@ export const loginFailure=createAction(
     "[Login Failure] Login Failed",
     props<{error:any}>()
 )
+
+export const decodeToken=createAction(
+    "[Save decoded token] Save decoded token",
+    props<{decodedToken:any}>()
+)
+
+export const logout=createAction(
+    "[User Logout] Logout"
+)
