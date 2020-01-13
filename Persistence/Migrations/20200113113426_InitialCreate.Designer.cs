@@ -10,7 +10,7 @@ using Persistence.Concrete.Context;
 namespace Persistence.Migrations
 {
     [DbContext(typeof(DataContext))]
-    [Migration("20200106144659_InitialCreate")]
+    [Migration("20200113113426_InitialCreate")]
     partial class InitialCreate
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -119,11 +119,15 @@ namespace Persistence.Migrations
 
             modelBuilder.Entity("Domain.UserActivity", b =>
                 {
-                    b.Property<string>("AppUserId")
-                        .HasColumnType("text");
+                    b.Property<Guid>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("uuid");
 
                     b.Property<Guid>("ActivityId")
                         .HasColumnType("uuid");
+
+                    b.Property<string>("AppUserId")
+                        .HasColumnType("text");
 
                     b.Property<DateTime>("DateJoined")
                         .HasColumnType("timestamp without time zone");
@@ -131,9 +135,11 @@ namespace Persistence.Migrations
                     b.Property<bool>("isHost")
                         .HasColumnType("boolean");
 
-                    b.HasKey("AppUserId", "ActivityId");
+                    b.HasKey("Id");
 
                     b.HasIndex("ActivityId");
+
+                    b.HasIndex("AppUserId");
 
                     b.ToTable("UserActivities");
                 });
@@ -293,9 +299,7 @@ namespace Persistence.Migrations
 
                     b.HasOne("Domain.AppUser", "AppUser")
                         .WithMany("UserActivities")
-                        .HasForeignKey("AppUserId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                        .HasForeignKey("AppUserId");
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<string>", b =>

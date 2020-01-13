@@ -12,6 +12,7 @@ export interface IACtivity{
 
 
 export interface IAttendees{
+    id:string | number | any;
     userName:string;
     displayName:string;
     image:string;

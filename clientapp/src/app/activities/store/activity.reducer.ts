@@ -66,7 +66,8 @@ export const activityReducer = createReducer(
         (state, action) => adapter.addOne(action.activity, {
             ...state,
             loading: false,
-            error: null
+            error: null,
+            
         })
 
     ),
@@ -101,7 +102,8 @@ export const activityReducer = createReducer(
         ...state,
         loading: false,
         error: action.error
-    }))
+    })),
+
 
 
 )

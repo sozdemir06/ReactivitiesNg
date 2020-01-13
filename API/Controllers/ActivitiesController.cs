@@ -54,16 +54,22 @@ namespace API.Controllers
             return await _mediator.Send(new Delete.Command{Id=id});
         }
 
-        [HttpPost("{id}/attend")]
+        [HttpPost("attend/{id}")]
         public async Task<ActionResult<Unit>> Attend(Guid id)
         {
             return await _mediator.Send(new Attend.Command{ActivityId=id});
         }
 
-       [HttpDelete("{id}/attend")]
-       public async Task<ActionResult<Unit>> RemoveAttend(Guid id)
+       [HttpDelete("attend/{id}")]
+       public async Task<ActionResult<AttandeeDto>> RemoveAttend(Guid id)
        {
            return await _mediator.Send(new Unattend.Command{ActivityId=id});
+       }
+
+       [HttpGet("attendees/{id}")]
+       public async Task<ActionResult<List<AttandeeDto>>> GetActivityAttendees(Guid id)
+       {
+           return await _mediator.Send(new AttendList.Query{ActivityId=id});
        }
     }
 }

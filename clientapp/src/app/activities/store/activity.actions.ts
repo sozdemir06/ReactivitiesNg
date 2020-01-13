@@ -1,5 +1,5 @@
 import { createAction, props } from '@ngrx/store';
-import { IACtivity } from './IActivity';
+import { IACtivity} from './IActivity';
 import { Update } from '@ngrx/entity';
 
 

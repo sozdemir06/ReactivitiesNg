@@ -3,23 +3,27 @@ import { ActivityState, selectAll } from './activity.reducer';
 import { IUser } from 'src/app/auth/models/IUser';
 import { IACtivity } from './IActivity';
 import * as AuthSelectors from "../../auth/store/auth-selectors";
+import { ActivityStates } from './reducers';
 
 
-export const selectactivityState=createFeatureSelector<ActivityState>("activities");
-
+export const selectState=createFeatureSelector<ActivityStates>("activity");
+export const selectActivityState=createSelector(
+    selectState,
+    (state:ActivityStates)=>state.activities,
+)
 export const selectAllActivit=createSelector(
-    selectactivityState,
+    selectActivityState,
     selectAll
 )
 
 
 export const selectActivityLoading=createSelector(
-    selectactivityState,
+    selectActivityState,
     state=>state.loading
 )
 
 export const selectActivityError=createSelector(
-    selectactivityState,
+    selectActivityState,
     state=>state.error
 )
 
@@ -29,7 +33,7 @@ export const getActiivtyById=(id:string | number)=>createSelector(
 )
 
 export const isActivityLoaded=createSelector(
-    selectactivityState,
+    selectActivityState,
     state=>state.allActivityLoaded
 )
 

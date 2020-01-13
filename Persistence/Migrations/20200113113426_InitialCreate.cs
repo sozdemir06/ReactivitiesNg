@@ -188,14 +188,15 @@ namespace Persistence.Migrations
                 name: "UserActivities",
                 columns: table => new
                 {
-                    AppUserId = table.Column<string>(nullable: false),
+                    Id = table.Column<Guid>(nullable: false),
+                    AppUserId = table.Column<string>(nullable: true),
                     ActivityId = table.Column<Guid>(nullable: false),
                     DateJoined = table.Column<DateTime>(nullable: false),
                     isHost = table.Column<bool>(nullable: false)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_UserActivities", x => new { x.AppUserId, x.ActivityId });
+                    table.PrimaryKey("PK_UserActivities", x => x.Id);
                     table.ForeignKey(
                         name: "FK_UserActivities_Activities_ActivityId",
                         column: x => x.ActivityId,
@@ -207,7 +208,7 @@ namespace Persistence.Migrations
                         column: x => x.AppUserId,
                         principalTable: "AspNetUsers",
                         principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
+                        onDelete: ReferentialAction.Restrict);
                 });
 
             migrationBuilder.CreateIndex(
@@ -251,6 +252,11 @@ namespace Persistence.Migrations
                 name: "IX_UserActivities_ActivityId",
                 table: "UserActivities",
                 column: "ActivityId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_UserActivities_AppUserId",
+                table: "UserActivities",
+                column: "AppUserId");
         }
 
         protected override void Down(MigrationBuilder migrationBuilder)

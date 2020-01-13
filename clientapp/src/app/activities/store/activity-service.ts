@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
-import { IACtivity } from './IActivity';
+import { IACtivity, IAttendees } from './IActivity';
 import { environment } from 'src/environments/environment';
 
 @Injectable({providedIn: 'root'})
@@ -25,6 +25,16 @@ apiUrl:string=environment.apiUrl;
         return this.httpClient.put<IACtivity>(this.apiUrl+"activities/"+id,model.changes);
     }
 
-    getActivityById
+    getactivityAttendees(activityId:string | number):Observable<IAttendees[]>{
+        return this.httpClient.get<IAttendees[]>(this.apiUrl+"activities/attendees/"+activityId);
+    }
+
+    joinActivity(activityId:string | number):Observable<IAttendees>{
+        return this.httpClient.post<IAttendees>(this.apiUrl+"activities/attend/"+activityId,{});
+    }
+
+    cancelJoiningActivity(activityId:string):Observable<IAttendees>{
+        return this.httpClient.delete<IAttendees>(this.apiUrl+"activities/attend/"+activityId);
+    }
     
 }

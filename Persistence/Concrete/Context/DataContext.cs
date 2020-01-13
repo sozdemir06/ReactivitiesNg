@@ -21,8 +21,6 @@ namespace Persistence.Concrete.Context
         {
             base.OnModelCreating(builder);
 
-            builder.Entity<UserActivity>(x=>x.HasKey(ua=>new {ua.AppUserId,ua.ActivityId}));
-
             builder.Entity<UserActivity>()
                    .HasOne(u=>u.AppUser)
                    .WithMany(a=>a.UserActivities)

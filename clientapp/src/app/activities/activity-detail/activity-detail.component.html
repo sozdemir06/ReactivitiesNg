@@ -11,9 +11,9 @@
           </div>
           <div class="card-footer clearfix">
             <div class="float-left">
-              <button  *ngIf="isGoing$ | async; else join" class="btn btn-secondary">Cancel Joining</button>
+              <button  *ngIf="isGoing$ | async; else join" class="btn btn-secondary" (click)="cancelJoiningActivity(activity.id)">Cancel Joining</button>
               <ng-template #join>
-                <button  class="btn btn-success">Join</button>
+                <button  class="btn btn-success" (click)='joinActivity(activity.id)'>Join</button>
               </ng-template>
               
             </div>
@@ -47,20 +47,7 @@
         </div>
       </div>
       <div class="col-md-4">
-        <div class="card">
-          <div class="card-header">Attandee</div>
-          <div class="card-body">
-            <ul class="list-group list-group-flush">
-                <li  *ngFor="let attendee of activity.attandees" class="media" >
-                    <img src='../../../assets/Images/{{attendee.image}}.jpg || ../../../../assets/Images/user.png'  class="mr-3" alt="..." style="max-width: 50px;">
-                    <div class="media-body">
-                    <h5 class="mt-0 mb-1">{{attendee.displayName}}</h5>
-                      <span class="text-orange">Following</span>
-                    </div>
-                  </li>
-            </ul>
-          </div>
-        </div>
+       <app-attendee [activityId]="activityRouterId"></app-attendee>
       </div>
     </div>
   </div>

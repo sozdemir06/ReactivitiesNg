@@ -14,6 +14,9 @@ import { ActivityEffects } from './store/activity-effects';
 import { ActivityService } from './store/activity-service';
 import { ActivityEditFormComponent } from './activity-edit-form/activity-edit-form.component';
 import { ActivityCreateFormComponent } from './activity-create-form/activity-create-form.component';
+import { AttendeeComponent } from './attendee/attendee.component';
+import { attendeesReducer } from './store/Attendees/attendees-reducer';
+import { AttendeesEffect } from './store/Attendees/attendees-effect';
 
 
 @NgModule({
@@ -22,7 +25,9 @@ import { ActivityCreateFormComponent } from './activity-create-form/activity-cre
         ActivityListComponent,
         ActivityDetailComponent,
         ActivityEditFormComponent,
-        ActivityCreateFormComponent
+        ActivityCreateFormComponent,
+        AttendeeComponent
+        
     ],
     imports: [
         FormsModule,
@@ -30,8 +35,11 @@ import { ActivityCreateFormComponent } from './activity-create-form/activity-cre
         ActivityRoutingModule,
         SharedModule,
         NgbDatepickerModule,
-        StoreModule.forFeature("activities",activityReducer),
-        EffectsModule.forFeature([ActivityEffects]),
+        StoreModule.forFeature("activity",{
+            activities:activityReducer,
+            attendees:attendeesReducer
+        }),
+        EffectsModule.forFeature([ActivityEffects,AttendeesEffect]),
         NgbDatepickerModule,
         NgbTimepickerModule
         
@@ -45,7 +53,8 @@ import { ActivityCreateFormComponent } from './activity-create-form/activity-cre
         ActivityEditFormComponent,
         ActivityCreateFormComponent,
         NgbDatepickerModule,
-        NgbTimepickerModule
+        NgbTimepickerModule,
+        AttendeeComponent
     ],
 
     providers: [
