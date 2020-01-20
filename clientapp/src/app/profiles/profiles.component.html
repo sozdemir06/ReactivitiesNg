@@ -1,0 +1,96 @@
+<section>
+  <div class="container" *ngIf="(profile$ | async ) as profile">
+    <div class="row">
+      <div class="col-md-12">
+        <div class="card">
+          <div class="card-body clearfix">
+            <div class="col-md-6 float-left">
+              <img class="img-thumbnail" src='../../assets/Images/{{profile.image}}' alt="" style="width: 100px;">
+              <span class="ml-2">{{profile.displayName}}</span>
+            </div>
+            <div class="col-md-4 float-right">
+              <span class="display-4">5</span>
+              <span class="h4">Followers</span>
+              <span class="display-4">10</span>
+              <span class="h4">Following</span>
+              <hr>
+              <button class="btn btn-success btn-md btn-block">Following</button>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-12 mt-2">
+        <div class="card">
+          <div class="car-body m-3">
+            <ngb-tabset>
+              <ngb-tab title="About">
+                <ng-template ngbTabContent>
+                  <p>Raw denim you probably haven't heard of them jean shorts Austin. Nesciunt tofu stumptown aliqua,
+                    retro synth
+                    master cleanse. Mustache cliche tempor, williamsburg carles vegan helvetica. Reprehenderit butcher
+                    retro keffiyeh
+                    dreamcatcher synth. Cosby sweater eu banh mi, qui irure terry richardson ex squid. Aliquip placeat
+                    salvia cillum
+                    iphone. Seitan aliquip quis cardigan american apparel, butcher voluptate nisi qui.</p>
+                </ng-template>
+              </ngb-tab>
+              <ngb-tab title="Photos">
+                <ng-template ngbTabContent>
+                  <div class="row">
+                    <div class="col-md-2" *ngFor="let photo of (profile.photos)">
+                       <div class="card mt-2">
+                          <img src='../../assets/Images/{{photo.imageUrl}}' class="card-img-top" alt="...">
+                          <div class="card-footer clearfix">
+                             <button class="btn btn-success btn-sm float-left">Set Main</button>
+                             <button class="btn btn-danger btn-sm float-right">Delete</button>
+                          </div>
+                       </div>
+                    </div>
+                  </div>
+                  <app-upload></app-upload>
+                </ng-template>
+                
+              </ngb-tab>
+              <ngb-tab title="Activities">
+                <ng-template ngbTabContent>
+                  <p>Sed commodo, leo at suscipit dictum, quam est porttitor sapien, eget sodales nibh elit id diam.
+                    Nulla facilisi. Donec egestas ligula vitae odio interdum aliquet. Duis lectus turpis, luctus eget
+                    tincidunt eu, congue et odio. Duis pharetra et nisl at faucibus. Quisque luctus pulvinar arcu, et
+                    molestie lectus ultrices et. Sed diam urna, egestas ut ipsum vel, volutpat volutpat neque. Praesent
+                    fringilla tortor arcu. Vivamus faucibus nisl enim, nec tristique ipsum euismod facilisis. Morbi ut
+                    bibendum est, eu tincidunt odio. Orci varius natoque penatibus et magnis dis parturient montes,
+                    nascetur ridiculus mus. Mauris aliquet odio ac lorem aliquet ultricies in eget neque. Phasellus nec
+                    tortor vel tellus pulvinar feugiat.</p>
+                </ng-template>
+              </ngb-tab>
+              <ngb-tab title="Followers">
+                <ng-template ngbTabContent>
+                  <p>Sed commodo, leo at suscipit dictum, quam est porttitor sapien, eget sodales nibh elit id diam.
+                    Nulla facilisi. Donec egestas ligula vitae odio interdum aliquet. Duis lectus turpis, luctus eget
+                    tincidunt eu, congue et odio. Duis pharetra et nisl at faucibus. Quisque luctus pulvinar arcu, et
+                    molestie lectus ultrices et. Sed diam urna, egestas ut ipsum vel, volutpat volutpat neque. Praesent
+                    fringilla tortor arcu. Vivamus faucibus nisl enim, nec tristique ipsum euismod facilisis. Morbi ut
+                    bibendum est, eu tincidunt odio. Orci varius natoque penatibus et magnis dis parturient montes,
+                    nascetur ridiculus mus. Mauris aliquet odio ac lorem aliquet ultricies in eget neque. Phasellus nec
+                    tortor vel tellus pulvinar feugiat.</p>
+                </ng-template>
+              </ngb-tab>
+              <ngb-tab title="Following">
+                <ng-template ngbTabContent>
+                  <p>Sed commodo, leo at suscipit dictum, quam est porttitor sapien, eget sodales nibh elit id diam.
+                    Nulla facilisi. Donec egestas ligula vitae odio interdum aliquet. Duis lectus turpis, luctus eget
+                    tincidunt eu, congue et odio. Duis pharetra et nisl at faucibus. Quisque luctus pulvinar arcu, et
+                    molestie lectus ultrices et. Sed diam urna, egestas ut ipsum vel, volutpat volutpat neque. Praesent
+                    fringilla tortor arcu. Vivamus faucibus nisl enim, nec tristique ipsum euismod facilisis. Morbi ut
+                    bibendum est, eu tincidunt odio. Orci varius natoque penatibus et magnis dis parturient montes,
+                    nascetur ridiculus mus. Mauris aliquet odio ac lorem aliquet ultricies in eget neque. Phasellus nec
+                    tortor vel tellus pulvinar feugiat.</p>
+                </ng-template>
+              </ngb-tab>
+            </ngb-tabset>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

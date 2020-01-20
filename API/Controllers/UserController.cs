@@ -1,8 +1,12 @@
+using System;
 using System.Threading.Tasks;
+using Application.Photos;
+using Application.Photos.Dto;
 using Application.Users;
 using Domain;
 using MediatR;
 using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
 namespace API.Controllers
@@ -36,6 +40,18 @@ namespace API.Controllers
         public async Task<ActionResult<User>> GetCurrentUser()
         {
             return  await mediator.Send(new CurrentUser.Query());
+        }
+
+        [HttpPost("uploadphoto")]
+        public async Task<ActionResult<PhotoForReturnDto>> AddPhoto([FromForm]IFormFile file)
+        {
+            return await mediator.Send(new CreatePhoto.Command{File=file});
+        }
+
+        [HttpDelete("{photoId}")]
+        public async Task<ActionResult<Unit>> DeletePhoto(Guid id)
+        {
+            return await mediator.Send(new Delete.Command{PhotoId=id});
         }
 
     }

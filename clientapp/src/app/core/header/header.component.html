@@ -38,7 +38,7 @@
             Şükrü Özdemir
           </a>
           <div ngbDropdownMenu>
-            <button ngbDropdownItem>Settings</button>
+            <button ngbDropdownItem [routerLink]="['/profiles',username$ | async]">Settings</button>
             <button ngbDropdownItem>Another Action</button>
             <button ngbDropdownItem (click)="logOut()">LogOut</button>
           </div>

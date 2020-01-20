@@ -1,10 +1,10 @@
 import { createFeatureSelector, createSelector } from '@ngrx/store';
 import { ActivityState, selectAll } from './activity.reducer';
 import { IUser } from 'src/app/auth/models/IUser';
-import { IACtivity } from './IActivity';
+import { IACtivity, IAttendees } from './IActivity';
 import * as AuthSelectors from "../../auth/store/auth-selectors";
 import { ActivityStates } from './reducers';
-
+import * as AttendeesSelectors from "./Attendees/attendees-selectors";
 
 export const selectState=createFeatureSelector<ActivityStates>("activity");
 export const selectActivityState=createSelector(
@@ -39,18 +39,16 @@ export const isActivityLoaded=createSelector(
 
 export const isHost=(id:string | number)=>createSelector(
     AuthSelectors.selectCurrentUser,
-    selectAllActivit,
-    (currentUser:IUser,activities:IACtivity[])=>{
-        const selectedActiivty=activities.find(a=>a.id===id);
-        return selectedActiivty.attandees.some(a=>a.userName===currentUser.userName && a.isHost);   
+    AttendeesSelectors.selectAllAttendees,
+    (currentUser:IUser,attendees:IAttendees[])=>{
+        return attendees.some(a=>a.userName===currentUser.userName && a.isHost);   
     }
 )
 
 export const isGoing=(id:string | number)=>createSelector(
     AuthSelectors.selectCurrentUser,
-    selectAllActivit,
-    (currentUser:IUser,activities:IACtivity[])=>{
-        const selectedActiivty=activities.find(a=>a.id==id);
-        return selectedActiivty.attandees.some(a=>a.userName===currentUser.userName);   
+    AttendeesSelectors.selectAllAttendees,
+    (currentUser:IUser,attendees:IAttendees[])=>{
+        return attendees.some(a=>a.userName===currentUser.userName);   
     }
 )

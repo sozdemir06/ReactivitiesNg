@@ -15,6 +15,9 @@ namespace Persistence.Concrete.Context
         public DbSet<Value> Values { get; set; }
         public DbSet<Activity> Activities { get; set; }
         public DbSet<UserActivity> UserActivities { get; set; }
+        public DbSet<UserPhoto> UserPhotos { get; set; }
+
+        public DbSet<Comment> Comments { get; set; }
 
 
         protected override void OnModelCreating(ModelBuilder builder)
@@ -28,7 +31,21 @@ namespace Persistence.Concrete.Context
             builder.Entity<UserActivity>()
                    .HasOne(a=>a.Activity)
                    .WithMany(u=>u.UserActivities)
-                   .HasForeignKey(fk=>fk.ActivityId);  
+                   .HasForeignKey(fk=>fk.ActivityId); 
+
+            builder.Entity<UserPhoto>()
+                    .HasOne(x=>x.AppUser)
+                    .WithMany(x=>x.UserPhotos)
+                    .HasForeignKey(f=>f.AppUserId);
+            builder.Entity<Comment>()
+                    .HasOne(u=>u.Author)
+                    .WithMany(u=>u.Comments)
+                    .HasForeignKey(f=>f.UserId);
+            builder.Entity<Comment>()
+                    .HasOne(u=>u.Activity)
+                    .WithMany(u=>u.Comments)
+                    .HasForeignKey(f=>f.ActivityId);
+
         }
     }
 

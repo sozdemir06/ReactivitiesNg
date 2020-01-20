@@ -63,8 +63,6 @@ export class ActivityDetailComponent implements OnInit {
         }
 
         this.store.dispatch(AttendeesActions.joinActivity({ attendees: attendees, activityId: id }));
-        this.isHost$ = this.store.pipe(select(isHost(this.activityRouterId)));
-        this.isGoing$ = this.store.pipe(select(isGoing(this.activityRouterId)));
       }
     })
 
@@ -72,8 +70,6 @@ export class ActivityDetailComponent implements OnInit {
 
   cancelJoiningActivity(id: string) {
     this.store.dispatch(AttendeesActions.cancelJoiningActivity({ activityId: id }));
-    this.isHost$ = this.store.pipe(select(isHost(this.activityRouterId)));
-    this.isGoing$ = this.store.pipe(select(isGoing(this.activityRouterId)));
 
   }
 

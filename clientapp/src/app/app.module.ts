@@ -18,18 +18,17 @@ import { AuthModule } from './auth/auth.module';
 
 
 
+
 @NgModule({
    declarations: [
       AppComponent,
       HomeComponent,
       AuthComponent,
 
-
    ],
    imports: [
       BrowserModule,
       AppRoutingModule,
-
       HttpClientModule,
       CoreModule,
       SharedModule,
@@ -43,10 +42,11 @@ import { AuthModule } from './auth/auth.module';
       }),
       StoreDevtoolsModule.instrument({ maxAge: 25, logOnly: environment.production }),
       EffectsModule.forRoot([AppEffects]),
-      
+
 
 
    ],
+
    providers: [],
    bootstrap: [AppComponent]
 })

@@ -43,7 +43,7 @@ namespace Application.Activities
 
                 var user = await context.Users.SingleOrDefaultAsync(u => u.UserName == userAccessor.GetCurrentUsername());
                 var attandee = await context.UserActivities.SingleOrDefaultAsync(x => x.ActivityId == activity.Id && x.AppUserId == user.Id);
-                var attedeeForReturn =mapper.Map<UserActivity,AttandeeDto>(attandee);
+                
                 if (attandee == null)
                 {
                     throw new RestException(HttpStatusCode.BadRequest,new{Attendee="Attendee not found"});
@@ -57,6 +57,7 @@ namespace Application.Activities
 
                 if (success)
                 {
+                    var attedeeForReturn =mapper.Map<UserActivity,AttandeeDto>(attandee);
                     return  attedeeForReturn;
                 }
 

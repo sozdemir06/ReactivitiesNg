@@ -34,3 +34,8 @@ export const selectCurrentUser = createSelector(
     selectAuthState,
     state => state.user
 )
+
+export const currentUserName=createSelector(
+    selectCurrentUser,
+    user=>user.userName
+)

@@ -8,6 +8,8 @@ namespace Domain
     {
         public string DisplayName { get; set; }
         public ICollection<UserActivity> UserActivities { get; set; }
+        public ICollection<UserPhoto> UserPhotos { get; set; }
+        public ICollection<Comment> Comments { get; set; }
 
     }
 }

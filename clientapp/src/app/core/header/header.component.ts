@@ -14,6 +14,7 @@ export class HeaderComponent implements OnInit {
   isMenuCollapsed:boolean=false; 
   isLoggedIn$:Observable<boolean>;
   isLoggedOut$:Observable<boolean>;
+  username$:Observable<string>;
 
   constructor(
     private store:Store<AppState>
@@ -23,7 +24,7 @@ export class HeaderComponent implements OnInit {
 
     this.isLoggedIn$=this.store.pipe(select(AuthSelectors.isLoggedIn));
     this.isLoggedOut$=this.store.pipe(select(AuthSelectors.isLoggedOut));
-
+    this.username$=this.store.pipe(select(AuthSelectors.currentUserName));
     
   }
 
