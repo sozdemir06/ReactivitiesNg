@@ -9,6 +9,7 @@ import * as AuthSelectors from "../../auth/store/auth-selectors";
 import { v4 as uuid } from "uuid";
 import { IUser } from 'src/app/auth/models/IUser';
 import { AttendeesActions } from '../store/Attendees/attandees-actions-types';
+import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 
 @Component({
   selector: 'app-activity-detail',
@@ -22,10 +23,13 @@ export class ActivityDetailComponent implements OnInit {
   isGoing$: Observable<boolean>;
   activityRouterId: string | number;
 
+  commentForm:FormGroup
+
   constructor(
     private route: ActivatedRoute,
     private store: Store<AppState>,
-    private router: Router
+    private router: Router,
+    private fb:FormBuilder
   ) { }
 
   ngOnInit() {
@@ -44,8 +48,25 @@ export class ActivityDetailComponent implements OnInit {
       this.router.navigateByUrl("/activities");
     }
 
+    this.checkCommentForm();
+
   }
 
+  senComment(id:string | number){
+
+    const model={
+      activityId:id,
+      body:this.commentForm.get("comment").value
+    }
+    console.log(model);
+   
+  }
+
+   checkCommentForm(){
+     this.commentForm=this.fb.group({
+       comment:["",Validators.required]
+     })
+   }
   changeMode() {
     this.mode = !this.mode;
   }

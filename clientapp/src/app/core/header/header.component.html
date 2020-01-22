@@ -21,6 +21,11 @@
         <li class="nav-item">
           <a class="nav-link" (click)="isMenuCollapsed = true">Examples</a>
         </li>
+        <li class="nav-item">
+          <a class="nav-link" (click)="isMenuCollapsed = true">
+            <app-signalr></app-signalr>
+          </a>
+        </li>
       </ul>
       <div class="form-inline">
          <button class="btn btn-success" [routerLink]="['/activities/create']" >Create Activity</button>
@@ -39,7 +44,7 @@
           </a>
           <div ngbDropdownMenu>
             <button ngbDropdownItem [routerLink]="['/profiles',username$ | async]">Settings</button>
-            <button ngbDropdownItem>Another Action</button>
+            <button ngbDropdownItem name="mybtn" (click)="showElementProp($event)">Another Action</button>
             <button ngbDropdownItem (click)="logOut()">LogOut</button>
           </div>
         </li>

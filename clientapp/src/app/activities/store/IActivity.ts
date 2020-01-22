@@ -19,3 +19,8 @@ export interface IAttendees{
     isHost:boolean;
 }
 
+export interface IActivityEnvelope{
+    activities:IACtivity[],
+    activityCount:number;
+}
+

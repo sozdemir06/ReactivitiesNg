@@ -6,6 +6,7 @@ import { Store, select } from '@ngrx/store';
 import { AppState } from '../reducers';
 import { selectAllActivit, selectActivityLoading, selectActivityError, getActiivtyById } from './store/activity.selectors';
 
+
 @Component({
   selector: 'app-activities',
   templateUrl: './activities.component.html',
@@ -22,7 +23,8 @@ export class ActivitiesComponent implements OnInit {
 
   constructor(
     private calendar: NgbCalendar,
-    private store:Store<AppState>
+    private store:Store<AppState>,
+
     
     ) {
   }
@@ -32,6 +34,8 @@ export class ActivitiesComponent implements OnInit {
     this.activities$=this.store.pipe(select(selectAllActivit));
     this.loading$=this.store.pipe(select(selectActivityLoading));
     this.error$=this.store.pipe(select(selectActivityError));
+
+   
   }
 
 

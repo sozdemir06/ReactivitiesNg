@@ -19,6 +19,7 @@ import { attendeesReducer } from './store/Attendees/attendees-reducer';
 import { AttendeesEffect } from './store/Attendees/attendees-effect';
 
 
+
 @NgModule({
     declarations: [
         ActivitiesComponent,
@@ -32,6 +33,7 @@ import { AttendeesEffect } from './store/Attendees/attendees-effect';
     imports: [
         FormsModule,
         ReactiveFormsModule,
+        FormsModule,
         ActivityRoutingModule,
         SharedModule,
         NgbDatepickerModule,
@@ -60,6 +62,7 @@ import { AttendeesEffect } from './store/Attendees/attendees-effect';
     providers: [
         ActivityResolver,
         ActivityService,
+      
 
     ],
 })

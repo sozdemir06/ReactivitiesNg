@@ -18,20 +18,22 @@ export class ActivityEffects {
     ACTIVITY_ACTIONS_ERROR=[
         ActivityActions.createActitivityError,
         ActivityActions.loadActivityFailure,
-        ActivityActions.updateActivityErrro
+        ActivityActions.updateActivityErrro,
+        ActivityActions.loadMoreFailed
     ];
 
     ACTIVITY_ACTIONS_SUCCESS=[
         ActivityActions.createActitivitySuccess,
         ActivityActions.loadedActivitySuccess,
-        ActivityActions.updateActivitySuccess
+        ActivityActions.updateActivitySuccess,
+        ActivityActions.loadMoreSuccess
     ]
 
     loadAllActivity$ = createEffect(
         () => this.actions$.pipe(
             ofType(ActivityActions.loadActivity),
             concatMap(action => this.acticityService.getallActivity()),
-            map(activities => ActivityActions.loadedActivitySuccess({ activities })),
+            map(activities => ActivityActions.loadedActivitySuccess({activitiesEnvelope:activities })),
             catchError(error => of(ActivityActions.loadActivityFailure({ error })))
         )
     )
@@ -59,6 +61,19 @@ export class ActivityEffects {
                 )
             )
 
+        )
+    )
+
+    //Laod More Effect
+    loadMoreActivity=createEffect(
+        ()=>this.actions$.pipe(
+            ofType(ActivityActions.loadMoreStart),
+            switchMap(({limit,page})=>
+                this.acticityService.getallActivity(limit,page).pipe(
+                    map(activityEnevelope=>ActivityActions.loadMoreSuccess({activitiesEnvelope:activityEnevelope})),
+                    catchError(error=>of(ActivityActions.loadMoreFailed({error})))
+                )
+            )
         )
     )
 

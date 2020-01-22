@@ -7,6 +7,7 @@ import { RouterModule } from '@angular/router';
 import { ErrorInterceptorProvide } from './error-interceptor';
 import { CommonModule } from '@angular/common';
 import { AuthInterceptors } from './auth-interceptors';
+import { SignalrModule } from '../signalr/signalr.module';
 
 
 
@@ -19,13 +20,14 @@ import { AuthInterceptors } from './auth-interceptors';
         CommonModule,
         NgbCollapseModule,
         NgbDropdownModule,
-        RouterModule
+        RouterModule,
+        SignalrModule
     ],
     exports: [
         HeaderComponent,
         FooterComponent,
         NgbCollapseModule,
-        NgbDropdownModule
+        NgbDropdownModule,
 
 
     ],

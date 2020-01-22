@@ -32,4 +32,8 @@ export class HeaderComponent implements OnInit {
     this.store.dispatch(AuthActions.logout());
   }
 
+  showElementProp(event){
+    console.log(event.target.name);
+  }
+
 }

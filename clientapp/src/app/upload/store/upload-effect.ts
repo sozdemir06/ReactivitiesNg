@@ -50,7 +50,6 @@ export class UploadEffect {
             //case HttpEventType.ResponseHeader:
             case HttpEventType.Response: {
                 if (event.status === 200) {
-                          ProfileActions.addNewProfilePhoto({image:event.body}) 
                     return UploadActions.UploadCompleteAction({data:event.body});
                 } else {
                     return UploadActions.UploadFailureAction({

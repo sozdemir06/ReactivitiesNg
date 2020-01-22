@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpParams } from '@angular/common/http';
 import { Observable } from 'rxjs';
-import { IACtivity, IAttendees } from './IActivity';
+import { IACtivity, IAttendees, IActivityEnvelope } from './IActivity';
 import { environment } from 'src/environments/environment';
 
 @Injectable({providedIn: 'root'})
@@ -13,8 +13,16 @@ apiUrl:string=environment.apiUrl;
     ) { }
 
 
-    getallActivity():Observable<IACtivity[]>{
-        return this.httpClient.get<IACtivity[]>(this.apiUrl+"activities");
+    getallActivity(limit?:any,page?:any):Observable<IActivityEnvelope>{
+        const offset=page?page*limit:0;
+        if(!limit){
+            limit=2;
+        }
+        const params=new HttpParams()
+                    .set("limit",`${limit}`)
+                    .set("offset",`${offset}`)
+
+        return this.httpClient.get<IActivityEnvelope>(this.apiUrl+"activities",{params});
     }
 
     addNew(activity:IACtivity):Observable<IACtivity>{

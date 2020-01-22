@@ -37,6 +37,7 @@ namespace Persistence.Concrete.Context
                     .HasOne(x=>x.AppUser)
                     .WithMany(x=>x.UserPhotos)
                     .HasForeignKey(f=>f.AppUserId);
+                    
             builder.Entity<Comment>()
                     .HasOne(u=>u.Author)
                     .WithMany(u=>u.Comments)

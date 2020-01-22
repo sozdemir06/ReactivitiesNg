@@ -43,6 +43,13 @@
                 </p> 
               </div>
             </div>
+            <form [formGroup]="commentForm" (ngSubmit)="senComment(activity.id)">
+              <div class="form-group">
+                <label for="exampleFormControlTextarea1">Example textarea</label>
+                <textarea formControlName="comment" class="form-control" id="exampleFormControlTextarea1" rows="3"></textarea>
+              </div>
+              <button class="btn btn-primary btn-sm btn-block">Send Message</button>
+            </form>
           </div>
         </div>
       </div>

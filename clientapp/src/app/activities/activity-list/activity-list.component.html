@@ -29,3 +29,7 @@
       </div>
     </div>
   </div>
+<button class="btn btn-sm btn-success btn-block" (click)="handleGetNext()" [disabled]='totalPages()===page+1'>
+    <span *ngIf="loadMoreLoading$ | async" class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>
+    Load More
+  </button><br><br>

@@ -23,10 +23,10 @@ namespace API.Controllers
         }
 
         [HttpGet]
-        public async Task<ActionResult<List<ActivityDto>>> List()
+        public async Task<ActionResult<List.ActivitiesEnvelope>> List(int? limit,int? offset)
         {
            
-            return await _mediator.Send(new List.Query());
+            return await _mediator.Send(new List.Query(limit,offset));
         }
 
         [HttpGet("{id}")]

@@ -52,3 +52,14 @@ export const isGoing=(id:string | number)=>createSelector(
         return attendees.some(a=>a.userName===currentUser.userName);   
     }
 )
+
+export const activityCount=createSelector(
+    selectActivityState,
+    state=>state.activityCount
+)
+
+//Load More
+export const loadMoreLoading=createSelector(
+    selectActivityState,
+    state=>state.loadMoreLoading
+)

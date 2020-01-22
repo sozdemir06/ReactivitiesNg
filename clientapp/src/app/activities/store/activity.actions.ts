@@ -1,6 +1,7 @@
 import { createAction, props } from '@ngrx/store';
-import { IACtivity} from './IActivity';
+import { IACtivity, IActivityEnvelope} from './IActivity';
 import { Update } from '@ngrx/entity';
+
 
 
 export const loadActivity=createAction(
@@ -9,7 +10,7 @@ export const loadActivity=createAction(
 
 export const loadedActivitySuccess=createAction(
     "[Loaded Activity Success] Loaded activity Success",
-    props<{activities:IACtivity[]}>()
+    props<{activitiesEnvelope:IActivityEnvelope}>()
 )
 
 export const loadActivityFailure=createAction(
@@ -45,6 +46,40 @@ export const updateActivitySuccess=createAction(
 
 export const updateActivityErrro=createAction(
     "[Update Actiivty Error] Update Activity Error",
+    props<{error:any}>()
+)
+
+//Load More
+export const loadMoreStart=createAction(
+    "[Load More Start] Activities",
+    props<{limit:any,page:any}>()
+)
+
+export const loadMoreSuccess=createAction(
+    "[Load More Success] Activities",
+    props<{activitiesEnvelope:IActivityEnvelope}>()
+)
+
+export const loadMoreFailed=createAction(
+    "[Load More Failure] Activities",
+    props<{error:any}>()
+)
+
+
+//Send Comment With SignalR
+
+export const sendCommentStart=createAction(
+    "[Send Comment Start] Comment",
+    props<{model:any}>()
+)
+
+export const sendCommentSuccess=createAction(
+    "[Send Comment Success] Comment",
+    props<{comment:any}>()
+)
+
+export const sendCommentFailure=createAction(
+    "[Send Comment Failure] Comment",
     props<{error:any}>()
 )
 
