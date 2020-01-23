@@ -22,7 +22,7 @@ namespace Application.Activities
         public class Handler : IRequestHandler<Command>
         {
             private readonly DataContext context;
-            private readonly IUserAccessor userAccessor;
+            private readonly IUserAccessor userAccessor; 
             public Handler(DataContext context, IUserAccessor userAccessor)
             {
                 this.userAccessor = userAccessor;

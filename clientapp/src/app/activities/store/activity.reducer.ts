@@ -176,4 +176,4 @@ export const activityReducer = createReducer(
 
 )
 
-export const { selectAll, selectEntities, selectIds } = adapter.getSelectors();
+export const { selectAll, selectEntities, selectIds,selectTotal } = adapter.getSelectors();

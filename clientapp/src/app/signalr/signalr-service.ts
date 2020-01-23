@@ -36,7 +36,6 @@ export class SignalRService {
             this.store.dispatch(SignalRActions.signalrActionConnected())
         }).catch(error=>{
             this.store.dispatch(SignalRActions.signalrActionDisconnected());
-            this.store.dispatch(SignalRActions.signalrConnectFailure({error}));
         });
 
         this.hubConnection.onreconnecting((error)=>{
@@ -51,7 +50,7 @@ export class SignalRService {
 
         this.hubConnection.onclose((error)=>{
             this.store.dispatch(SignalRActions.signalrActionDisconnected());
-            console.assert(this.hubConnection.state === HubConnectionState.Disconnected);
+            //console.assert(this.hubConnection.state === HubConnectionState.Disconnected);
         })
 
 

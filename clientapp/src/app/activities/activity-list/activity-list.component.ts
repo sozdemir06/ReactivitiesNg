@@ -18,6 +18,8 @@ page:any=0;
 activityCount$:Observable<number>;
 activityCount:number;
 loadMoreLoading$:Observable<boolean>;
+remainingItem:number;
+currentCount$:Observable<number>;
 
   constructor(
     private store:Store<AppState>
@@ -25,7 +27,10 @@ loadMoreLoading$:Observable<boolean>;
 
   ngOnInit() {
     this.activityCount$=this.store.pipe(select(ActivitySelectors.activityCount));
-    this.loadMoreLoading$=this.store.pipe(select(ActivitySelectors.loadMoreLoading))
+    this.loadMoreLoading$=this.store.pipe(select(ActivitySelectors.loadMoreLoading));
+    this.currentCount$=this.store.pipe(select(ActivitySelectors.getActivityCount));
+
+
   }
 
   totalPages():number{
@@ -46,7 +51,5 @@ loadMoreLoading$:Observable<boolean>;
       this.setPage(this.page+1);
       this.store.dispatch(ActivityActions.loadMoreStart({limit:this.limit,page:this.page}));
   }
-
-
 
 }

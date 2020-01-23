@@ -1,5 +1,5 @@
 import { createFeatureSelector, createSelector } from '@ngrx/store';
-import { ActivityState, selectAll } from './activity.reducer';
+import { ActivityState, selectAll, selectTotal } from './activity.reducer';
 import { IUser } from 'src/app/auth/models/IUser';
 import { IACtivity, IAttendees } from './IActivity';
 import * as AuthSelectors from "../../auth/store/auth-selectors";
@@ -62,4 +62,9 @@ export const activityCount=createSelector(
 export const loadMoreLoading=createSelector(
     selectActivityState,
     state=>state.loadMoreLoading
+)
+
+export const getActivityCount=createSelector(
+    selectActivityState,
+    selectTotal
 )
