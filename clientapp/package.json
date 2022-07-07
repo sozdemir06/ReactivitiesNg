@@ -28,7 +28,7 @@
     "@types/uuid": "^3.4.6",
     "bootstrap": "^4.4.1",
     "jwt-decode": "^2.2.0",
-    "moment": "^2.24.0",
+    "moment": "^2.29.4",
     "moment-timezone": "^0.5.27",
     "ng-zorro-antd": "^8.5.2",
     "rxjs": "~6.4.0",
